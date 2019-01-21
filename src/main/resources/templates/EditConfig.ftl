@@ -1,0 +1,5 @@
+[@ww.textfield labelKey="Download Katalon Version" name="version" required='false'/]
+[@ww.textfield labelKey="Use pre-installed Katalon Studio" name="location" required='false'/]
+[@ww.textarea labelKey="Command arguments" name="executeArgs" required='false'/]
+[@ww.textfield labelKey="X11 DISPLAY (for Linux)" name="x11Display" required='false'/]
+[@ww.textfield labelKey="Xvfb-run configuration" name="xvfbConfiguration" required='false'/]
