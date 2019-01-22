@@ -1,11 +1,22 @@
 package com.katalon.task;
 
+import com.atlassian.bamboo.archive.Archiver;
+import com.atlassian.bamboo.archive.ArchiverResolver;
+import com.atlassian.bamboo.archive.ArchiverType;
 import com.atlassian.bamboo.build.logger.BuildLogger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.h2.store.fs.FilePath;
+import org.apache.maven.cli.PrintStreamLogger;
+import org.apache.tools.ant.taskdefs.Ant;
+import org.apache.tools.ant.taskdefs.Expand;
+import org.apache.tools.ant.taskdefs.Tar;
+import org.apache.tools.ant.taskdefs.Untar;
+import org.codehaus.plexus.archiver.tar.TarGZipUnArchiver;
+import org.codehaus.plexus.archiver.zip.ZipUnArchiver;
+import org.codehaus.plexus.logging.AbstractLogger;
+import org.codehaus.plexus.logging.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +71,7 @@ class KatalonUtils {
 
     private static void downloadAndExtract(
             BuildLogger buildLogger, String versionNumber, File targetDir)
-            throws IOException, InterruptedException {
+        throws IOException, InterruptedException {
 
         KatalonVersion version = KatalonUtils.getVersionInfo(buildLogger, versionNumber);
 
@@ -75,15 +86,23 @@ class KatalonUtils {
         try (InputStream inputStream = url.openStream()) {
             Path temporaryFile = Files.createTempFile("Katalon-" + versionNumber, "");
             Files.copy(
-                    inputStream,
-                    temporaryFile,
-                    StandardCopyOption.REPLACE_EXISTING);
-            FilePath temporaryFilePath = new FilePath(temporaryFile.toFile());
-            FilePath targetDirPath = new FilePath(targetDir);
+                inputStream,
+                temporaryFile,
+                StandardCopyOption.REPLACE_EXISTING);
+
+            Logger logger = new PluginLogger(buildLogger);
             if (versionUrl.contains(".zip")) {
-                temporaryFilePath.unzip(targetDirPath);
+                ZipUnArchiver zipUnArchiver = new ZipUnArchiver();
+                zipUnArchiver.setSourceFile(temporaryFile.toFile());
+                zipUnArchiver.setDestDirectory(targetDir);
+                zipUnArchiver.enableLogging(logger);
+                zipUnArchiver.extract();
             } else if (versionUrl.contains(".tar.gz")) {
-                temporaryFilePath.untar(targetDirPath, FilePath.TarCompression.GZIP);
+                TarGZipUnArchiver tarGZipUnArchiver = new TarGZipUnArchiver();
+                tarGZipUnArchiver.setSourceFile(temporaryFile.toFile());
+                tarGZipUnArchiver.setDestDirectory(targetDir);
+                tarGZipUnArchiver.enableLogging(logger);
+                tarGZipUnArchiver.extract();
             } else {
                 throw new IllegalStateException();
             }
@@ -92,7 +111,7 @@ class KatalonUtils {
 
     private static File getKatalonFolder(String version) {
         String path = System.getProperty("user.home");
-
+        path = "D:\\bamboo-plugin-test";
         Path p = Paths.get(path, ".katalon", version);
         return p.toFile();
     }
@@ -102,6 +121,7 @@ class KatalonUtils {
             throws IOException, InterruptedException {
 
         File katalonDir = getKatalonFolder(versionNumber);
+        LogUtils.log(buildLogger, "katalon Dir " + katalonDir);
 
         Path fileLog = Paths.get(katalonDir.toString(), ".katalon.done");
 

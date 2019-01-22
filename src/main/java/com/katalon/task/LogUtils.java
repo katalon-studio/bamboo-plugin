@@ -8,4 +8,5 @@ class LogUtils {
     static void log(BuildLogger buildLogger, String message) {
         buildLogger.addBuildLogEntry(message);
     }
+
 }
