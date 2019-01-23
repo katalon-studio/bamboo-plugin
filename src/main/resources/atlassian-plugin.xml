@@ -3,8 +3,8 @@
         <description>${project.description}</description>
         <version>${project.version}</version>
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
+        <param name="plugin-icon">images/logo_16@2x.png</param>
+        <param name="plugin-logo">images/logo_16@2x.png</param>
     </plugin-info>
 
     <!-- add our i18n resource -->
@@ -26,6 +26,9 @@
         <!-- Categories available in 3.1: "builder", "test" and "deployment"
         <category name=""/>
         -->
+        <category name="test"/>
+        <resource type="download" name="icon" location="images/logo_16@2x.png"/>
+        <help link="https://www.katalon.com" title="How to use Katalon Task" />
         <configuration class="com.katalon.task.KatalonTaskConfiguration" />
         <resource type="freemarker" name="edit" location="templates/EditConfig.ftl"/>
         <resource type="freemarker" name="view" location="templates/EditConfig.ftl"/>
