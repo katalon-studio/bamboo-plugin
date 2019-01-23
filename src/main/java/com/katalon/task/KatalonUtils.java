@@ -111,7 +111,6 @@ class KatalonUtils {
 
     private static File getKatalonFolder(String version) {
         String path = System.getProperty("user.home");
-        path = "D:\\bamboo-plugin-test";
         Path p = Paths.get(path, ".katalon", version);
         return p.toFile();
     }
