@@ -28,7 +28,7 @@
         -->
         <category name="test"/>
         <resource type="download" name="icon" location="images/logo_16@2x.png"/>
-        <help link="https://www.katalon.com" title="How to use Katalon Task" />
+        <help link="https://www.katalon.com" title="How to use Katalon Task"  />
         <configuration class="com.katalon.task.KatalonTaskConfiguration" />
         <resource type="freemarker" name="edit" location="templates/EditConfig.ftl"/>
         <resource type="freemarker" name="view" location="templates/EditConfig.ftl"/>

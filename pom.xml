@@ -85,14 +85,12 @@
             <artifactId>gson</artifactId>
             <version>2.2.2-atlassian-1</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.codehaus.plexus/plexus-archiver -->
         <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-archiver</artifactId>
-            <version>4.1.0</version>
-        </dependency>
+            <groupId>com.katalon</groupId>
+            <artifactId>utils</artifactId>
+            <version>1.0.2</version>
 
+        </dependency>
 
 
     </dependencies>

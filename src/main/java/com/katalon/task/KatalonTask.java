@@ -3,6 +3,8 @@ package com.katalon.task;
 import com.atlassian.bamboo.build.logger.BuildLogger;
 import com.atlassian.bamboo.task.*;
 import com.google.common.base.Throwables;
+import com.katalon.utils.KatalonUtils;
+import com.katalon.utils.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -31,9 +33,8 @@ public class KatalonTask implements TaskType {
                 String workspaceLocation = workspace.getPath();
 
                 if (workspaceLocation != null) {
-
-                    KatalonUtils.executeKatalon(
-                        buildLogger,
+                    Logger logger = new PluginLogger(buildLogger);
+                    KatalonUtils.executeKatalon(logger,
                         version,
                         location,
                         workspaceLocation,
