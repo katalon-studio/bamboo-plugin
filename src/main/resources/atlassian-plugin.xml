@@ -21,8 +21,8 @@
         <context>katalon-bamboo-plugin</context>
     </web-resource>
 
-    <taskType name="Katalon Jobs" class="com.katalon.task.KatalonTask" key="test">
-        <description>Katalon Task</description>
+    <taskType name="Execute Katalon Studio Tests" class="com.katalon.task.KatalonTask" key="test">
+        <description>Execute Katalon Studio Tests</description>
         <!-- Categories available in 3.1: "builder", "test" and "deployment"
         <category name=""/>
         -->
