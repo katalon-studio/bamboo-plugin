@@ -26,7 +26,6 @@ public class KatalonTask implements TaskType {
 
         final BuildLogger buildLogger = taskContext.getBuildLogger();
 
-        buildLogger.addBuildLogEntry("license " + license.isValid());
 
         if (license.isValid()) {
             String version = taskContext.getConfigurationMap().get("version");
@@ -58,17 +57,16 @@ public class KatalonTask implements TaskType {
                     }
                 }
 
+                return TaskResultBuilder.newBuilder(taskContext).success().build();
+
             } catch (Exception e) {
                 String stackTrace = Throwables.getStackTraceAsString(e);
                 LogUtils.log(buildLogger, stackTrace);
-                TaskResultBuilder.newBuilder(taskContext).failedWithError().build();
+                return TaskResultBuilder.newBuilder(taskContext).failedWithError().build();
             }
         }
 
-
         buildLogger.addErrorLogEntry("Katalon add-on for Bamboo requires a valid license. Please contact your Bamboo admin.");
-
-
         return TaskResultBuilder.newBuilder(taskContext).failedWithError().build();
     }
 }
