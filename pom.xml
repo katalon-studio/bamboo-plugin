@@ -29,6 +29,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <upm.version>2.21</upm.version>
     </properties>
 
     <dependencies>
@@ -89,7 +90,20 @@
             <groupId>com.katalon</groupId>
             <artifactId>utils</artifactId>
             <version>1.0.2</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.atlassian.upm</groupId>
+            <artifactId>licensing-api</artifactId>
+            <version>${upm.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.upm</groupId>
+            <artifactId>upm-api</artifactId>
+            <version>${upm.version}</version>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -110,24 +124,24 @@
 
                     <!-- See here for an explanation of default instructions: -->
                     <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
-                    <instructions>
-                        <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
+                    <!--<instructions>-->
+                        <!--<Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>-->
 
-                        <!-- Add package to export here -->
-                        <Export-Package>
-                            com.katalon.api,
-                        </Export-Package>
+                        <!--&lt;!&ndash; Add package to export here &ndash;&gt;-->
+                        <!--<Export-Package>-->
+                            <!--com.katalon.api,-->
+                        <!--</Export-Package>-->
 
-                        <!-- Add package import here -->
-                        <!--<Import-Package>-->
-                            <!--org.springframework.osgi.*;resolution:="optional",-->
-                            <!--org.eclipse.gemini.blueprint.*;resolution:="optional",-->
-                            <!--*-->
-                        <!--</Import-Package>-->
+                        <!--&lt;!&ndash; Add package import here &ndash;&gt;-->
+                        <!--&lt;!&ndash;<Import-Package>&ndash;&gt;-->
+                            <!--&lt;!&ndash;org.springframework.osgi.*;resolution:="optional",&ndash;&gt;-->
+                            <!--&lt;!&ndash;org.eclipse.gemini.blueprint.*;resolution:="optional",&ndash;&gt;-->
+                            <!--&lt;!&ndash;*&ndash;&gt;-->
+                        <!--&lt;!&ndash;</Import-Package>&ndash;&gt;-->
 
-                        <!-- Ensure plugin is spring powered -->
-                        <Spring-Context>*</Spring-Context>
-                    </instructions>
+                        <!--&lt;!&ndash; Ensure plugin is spring powered &ndash;&gt;-->
+                        <!--<Spring-Context>*</Spring-Context>-->
+                    <!--</instructions>-->
                 </configuration>
             </plugin>
 
