@@ -15,7 +15,7 @@
     </organization>
 
     <name>katalon-bamboo-plugin</name>
-    <description>This is the com.katalon:katalon-bamboo-plugin plugin for Atlassian Bamboo.</description>
+    <description>Katalon plugin for Atlassian Bamboo.</description>
     <packaging>atlassian-plugin</packaging>
 
     <properties>
@@ -89,9 +89,8 @@
         <dependency>
             <groupId>com.katalon</groupId>
             <artifactId>utils</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
-
         <dependency>
             <groupId>com.atlassian.upm</groupId>
             <artifactId>licensing-api</artifactId>

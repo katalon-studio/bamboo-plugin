@@ -13,6 +13,6 @@ public class PluginLogger implements Logger {
 
     @Override
     public void info(String message) {
-        this.buildLogger.addBuildLogEntry(message);
+        LogUtils.log(buildLogger, message);
     }
 }
