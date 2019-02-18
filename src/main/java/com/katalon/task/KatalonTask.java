@@ -26,7 +26,6 @@ public class KatalonTask implements TaskType {
 
         final BuildLogger buildLogger = taskContext.getBuildLogger();
 
-
         if (license.isValid()) {
             String version = taskContext.getConfigurationMap().get("version");
             String location = taskContext.getConfigurationMap().get("location");
@@ -39,14 +38,14 @@ public class KatalonTask implements TaskType {
             try {
 
                 File workspace = taskContext.getWorkingDirectory();
+                boolean runCommand = false;
 
                 if (workspace != null) {
 
                     String workspaceLocation = workspace.getPath();
-
                     if (workspaceLocation != null) {
                         Logger logger = new PluginLogger(buildLogger);
-                        KatalonUtils.executeKatalon(logger,
+                        runCommand = KatalonUtils.executeKatalon(logger,
                             version,
                             location,
                             workspaceLocation,
@@ -57,7 +56,11 @@ public class KatalonTask implements TaskType {
                     }
                 }
 
-                return TaskResultBuilder.newBuilder(taskContext).success().build();
+                if (runCommand) {
+                    return TaskResultBuilder.newBuilder(taskContext).success().build();
+                } else {
+                    return TaskResultBuilder.newBuilder(taskContext).failedWithError().build();
+                }
 
             } catch (Exception e) {
                 String stackTrace = Throwables.getStackTraceAsString(e);
