@@ -2,6 +2,8 @@ package com.katalon.task;
 
 import com.atlassian.bamboo.build.logger.BuildLogger;
 import com.atlassian.bamboo.task.*;
+import com.atlassian.bamboo.variable.VariableContext;
+import com.atlassian.bamboo.variable.VariableDefinitionContext;
 import com.google.common.base.Throwables;
 import com.katalon.license.LicenseUtils;
 import com.katalon.license.LicenseValidation;
@@ -11,6 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class KatalonTask implements TaskType {
 
@@ -33,7 +38,13 @@ public class KatalonTask implements TaskType {
             String x11Display = taskContext.getConfigurationMap().get("x11Display");
             String xvfbConfiguration = taskContext.getConfigurationMap().get("xvfbConfiguration");
 
-
+            VariableContext variables = taskContext.getBuildContext().getVariableContext();
+            Map<String, VariableDefinitionContext> variable = variables.getEffectiveVariables();
+            Map<String, String> environmentVariables = variable.entrySet().stream()
+                    .collect(Collectors.toMap(
+                            entry -> entry.getKey(),
+                            entry -> Optional.ofNullable(entry.getValue().getValue()).orElse("")
+                    ));
 
             try {
 
@@ -46,12 +57,13 @@ public class KatalonTask implements TaskType {
                     if (workspaceLocation != null) {
                         Logger logger = new PluginLogger(buildLogger);
                         runCommand = KatalonUtils.executeKatalon(logger,
-                            version,
-                            location,
-                            workspaceLocation,
-                            executeArgs,
-                            x11Display,
-                            xvfbConfiguration);
+                                version,
+                                location,
+                                workspaceLocation,
+                                executeArgs,
+                                x11Display,
+                                xvfbConfiguration,
+                                environmentVariables);
 
                     }
                 }

@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.katalon</groupId>
     <artifactId>katalon-bamboo-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
 
     <organization>
         <name>Katalon</name>
@@ -89,7 +89,7 @@
         <dependency>
             <groupId>com.katalon</groupId>
             <artifactId>utils</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.5</version>
         </dependency>
         <dependency>
             <groupId>com.atlassian.upm</groupId>
