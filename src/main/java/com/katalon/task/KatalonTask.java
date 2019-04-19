@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,13 +39,17 @@ public class KatalonTask implements TaskType {
             String x11Display = taskContext.getConfigurationMap().get("x11Display");
             String xvfbConfiguration = taskContext.getConfigurationMap().get("xvfbConfiguration");
 
+            Map<String, String> systemEnvironmentVariables = System.getenv();
             VariableContext variables = taskContext.getBuildContext().getVariableContext();
             Map<String, VariableDefinitionContext> variable = variables.getEffectiveVariables();
-            Map<String, String> environmentVariables = variable.entrySet().stream()
+            Map<String, String> bambooEnvironmentVariables = variable.entrySet().stream()
                     .collect(Collectors.toMap(
                             entry -> entry.getKey(),
                             entry -> Optional.ofNullable(entry.getValue().getValue()).orElse("")
                     ));
+            Map<String, String> environmentVariables = new HashMap<>();
+            environmentVariables.putAll(systemEnvironmentVariables);
+            environmentVariables.putAll(bambooEnvironmentVariables);
 
             try {
 
