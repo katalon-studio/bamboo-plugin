@@ -5,6 +5,7 @@ import com.atlassian.bamboo.task.*;
 import com.atlassian.bamboo.variable.VariableContext;
 import com.atlassian.bamboo.variable.VariableDefinitionContext;
 import com.google.common.base.Throwables;
+import com.katalon.license.ComponentUtils;
 import com.katalon.license.LicenseUtils;
 import com.katalon.license.LicenseValidation;
 import com.katalon.utils.KatalonUtils;
@@ -20,9 +21,12 @@ import java.util.stream.Collectors;
 
 public class KatalonTask implements TaskType {
 
-    @Autowired
+//    @Autowired
     private LicenseUtils licenseUtils;
 
+    public KatalonTask() {
+        this.licenseUtils = ComponentUtils.getLicenseUtils();
+    }
 
     @NotNull
     @Override
