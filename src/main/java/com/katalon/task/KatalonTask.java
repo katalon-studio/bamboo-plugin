@@ -21,16 +21,11 @@ import java.util.stream.Collectors;
 
 public class KatalonTask implements TaskType {
 
-//    @Autowired
-    private LicenseUtils licenseUtils;
-
-    public KatalonTask() {
-        this.licenseUtils = ComponentUtils.getLicenseUtils();
-    }
-
     @NotNull
     @Override
     public TaskResult execute(@NotNull TaskContext taskContext) {
+
+        LicenseUtils licenseUtils = ComponentUtils.getLicenseUtils();
 
         LicenseValidation license = licenseUtils.validateLicense();
 
