@@ -8,7 +8,7 @@
         <param name="atlassian-licensing-enabled">true</param>
     </plugin-info>
 
-    <component key="licenseUtils" class="com.katalon.license.LicenseUtils"/>
+<!--    <component key="licenseUtils" class="com.katalon.license.LicenseUtils"/>-->
     <component-import key="pluginLicenseManager" interface="com.atlassian.upm.api.license.PluginLicenseManager"/>
 
     <!-- add our i18n resource -->

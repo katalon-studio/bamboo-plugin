@@ -5,9 +5,9 @@ import com.atlassian.bamboo.task.*;
 import com.atlassian.bamboo.variable.VariableContext;
 import com.atlassian.bamboo.variable.VariableDefinitionContext;
 import com.google.common.base.Throwables;
-import com.katalon.license.ComponentUtils;
-import com.katalon.license.LicenseUtils;
-import com.katalon.license.LicenseValidation;
+//import com.katalon.license.ComponentUtils;
+//import com.katalon.license.LicenseUtils;
+//import com.katalon.license.LicenseValidation;
 import com.katalon.utils.KatalonUtils;
 import com.katalon.utils.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -25,13 +25,13 @@ public class KatalonTask implements TaskType {
     @Override
     public TaskResult execute(@NotNull TaskContext taskContext) {
 
-        LicenseUtils licenseUtils = ComponentUtils.getLicenseUtils();
+//        LicenseUtils licenseUtils = ComponentUtils.getLicenseUtils();
 
-        LicenseValidation license = licenseUtils.validateLicense();
+//        LicenseValidation license = licenseUtils.validateLicense();
 
         final BuildLogger buildLogger = taskContext.getBuildLogger();
 
-        if (license.isValid()) {
+//        if (license.isValid()) {
             String version = taskContext.getConfigurationMap().get("version");
             String location = taskContext.getConfigurationMap().get("location");
             String executeArgs = taskContext.getConfigurationMap().get("executeArgs");
@@ -83,9 +83,9 @@ public class KatalonTask implements TaskType {
                 LogUtils.log(buildLogger, stackTrace);
                 return TaskResultBuilder.newBuilder(taskContext).failedWithError().build();
             }
-        }
+//        }
 
-        buildLogger.addErrorLogEntry("Katalon add-on for Bamboo requires a valid license. Please contact your Bamboo admin.");
-        return TaskResultBuilder.newBuilder(taskContext).failedWithError().build();
+//        buildLogger.addErrorLogEntry("Katalon add-on for Bamboo requires a valid license. Please contact your Bamboo admin.");
+//        return TaskResultBuilder.newBuilder(taskContext).failedWithError().build();
     }
 }

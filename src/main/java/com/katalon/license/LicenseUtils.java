@@ -3,9 +3,9 @@ package com.katalon.license;
 import com.atlassian.upm.api.license.PluginLicenseManager;
 import com.atlassian.upm.api.license.entity.PluginLicense;
 import com.atlassian.upm.api.util.Option;
-import org.osgi.service.component.annotations.Component;
+//import org.osgi.service.component.annotations.Component;
 
-@Component
+//@Component
 public class LicenseUtils {
 
   private PluginLicenseManager pluginLicenseManager;
