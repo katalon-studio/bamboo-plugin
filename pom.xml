@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.katalon</groupId>
     <artifactId>katalon-bamboo-plugin</artifactId>
-    <version>1.6.4</version>
+    <version>1.6.5</version>
 
     <organization>
         <name>Katalon</name>
@@ -15,7 +15,7 @@
     </organization>
 
     <name>katalon-bamboo-plugin</name>
-    <description>Katalon plugin for Atlassian Bamboo.</description>
+    <description>Katalon DevOps plugin for Atlassian Bamboo.</description>
     <packaging>atlassian-plugin</packaging>
 
     <properties>
