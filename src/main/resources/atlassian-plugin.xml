@@ -1,4 +1,4 @@
-<atlassian-plugin key="${atlassian.plugin.key}" name="Katalon Plugin" plugins-version="2">
+<atlassian-plugin key="${atlassian.plugin.key}" name="Katalon DevOps Plugin" plugins-version="2">
     <plugin-info>
         <description>${project.description}</description>
         <version>${project.version}</version>
@@ -13,11 +13,11 @@
 
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="katalon-bamboo-plugin"/>
-    
+
     <!-- add our web resources -->
     <web-resource key="katalon-bamboo-plugin-resources" name="katalon-bamboo-plugin Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
+
         <resource type="download" name="katalon-bamboo-plugin.css" location="/css/katalon-bamboo-plugin.css"/>
         <resource type="download" name="katalon-bamboo-plugin.js" location="/js/katalon-bamboo-plugin.js"/>
         <resource type="download" name="images/" location="/images"/>
@@ -37,5 +37,5 @@
         <resource type="freemarker" name="edit" location="templates/EditConfig.ftl"/>
         <resource type="freemarker" name="view" location="templates/EditConfig.ftl"/>
     </taskType>
-    
+
 </atlassian-plugin>
